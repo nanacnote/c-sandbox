@@ -1,3 +1,3 @@
 all: main.c
-	gcc -o ~/apps/foosh main.c
+	gcc -o foosh main.c
 
