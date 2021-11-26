@@ -24,7 +24,7 @@ int main()
 	printf("|______________________________|\n");
 	printf("|                              |\n");
 	printf("| maintainer  :   Owusu K      |\n");
-	printf("| organisation:                |\n");
+	printf("| organisation:   UEA          |\n");
 	printf("|______________________________|\n\n");
 	
 	while(1){
