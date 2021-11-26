@@ -17,8 +17,16 @@ int main()
 {
 	p_input = (char*) malloc(50*sizeof(char)); 
 
+	printf("\e[38;5;0m\e[48;5;250m");
 	printf("\e[1;1H\e[2J");
-	printf("Welcome to \"Foo Shell\"\n __________________\n\n");
+	printf(" ______________________________\n");
+	printf("|                              |\n");
+	printf("|          FOO SHELL           |\n");
+	printf("|______________________________|\n");
+	printf("|                              |\n");
+	printf("|   maintainer:   Owusu K      |\n");
+	printf("| organisation:   UEA          |\n");
+	printf("|______________________________|\n\n");
 	
 	while(1){
 		prompt();
@@ -30,8 +38,11 @@ int main()
 
 	}
 
-	printf("\nThanks for using \"Foo Shell\"\n\n");
+	printf("\e[0m");
+	printf("\e[1;1H\e[2J");
+	
 	free(p_input);
+	
 	return 0;
 }
 
