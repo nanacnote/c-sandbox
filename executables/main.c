@@ -5,6 +5,11 @@
 #include <unistd.h>
 #include <sys/stat.h>
 
+
+struct stat dir_stat;
+struct dirent* dir_content;
+
+void concat_path();
 void check_dir();
 
 int main(int argc, char* argv[]) {
@@ -21,19 +26,40 @@ int main(int argc, char* argv[]) {
 };
 
 
-void check_dir(char* path){
-    struct dirent* dir_content;
-    struct stat dir_stat;
-    DIR* dir = opendir(path); 
+void concat_path(char* dir_path, char* filename, char* path){
+   char temp[200] = "";
+
+   strcat(temp, dir_path);
+   strcat(temp, "/");
+   strcat(temp, filename);
+
+   strcpy(path, temp);
+};
+
+
+void check_dir(char* dir_path){
+    DIR* dir = opendir(dir_path); 
 
     if(dir == NULL){
         printf("%s\n", strerror(errno));
     } else {
-        while((dir_content = readdir(dir)) != NULL) {
-           printf("%s %lu\n", dir_content->d_name, dir_stat.st_ino);
+        dir_content = readdir(dir);
+        
+        printf("Permission\t\tFilename\n");
+        printf("----------\t\t--------\n");
+
+        while(dir_content != NULL) {
+            char file_path[200];
+            concat_path(dir_path, dir_content->d_name, file_path);
+            stat(file_path, &dir_stat);
+            printf("%lu\t\t\t%s\n", dir_stat.st_ino, dir_content->d_name);
+        
+            dir_content = readdir(dir);
         };
 
         closedir(dir);
     };
 };
+
+
 

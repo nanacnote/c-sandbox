@@ -6,6 +6,7 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 
+void prompt();
 void tokenise();
 void change_dir();
 void parse_cmd();
