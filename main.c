@@ -7,7 +7,6 @@
 #include <sys/types.h>
 
 void tokenise();
-void prompt();
 void change_dir();
 void parse_cmd();
 
@@ -24,8 +23,8 @@ int main()
 	printf("|          FOO SHELL           |\n");
 	printf("|______________________________|\n");
 	printf("|                              |\n");
-	printf("|   maintainer:   Owusu K      |\n");
-	printf("| organisation:   UEA          |\n");
+	printf("| maintainer  :   Owusu K      |\n");
+	printf("| organisation:                |\n");
 	printf("|______________________________|\n\n");
 	
 	while(1){
