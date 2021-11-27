@@ -13,14 +13,28 @@ void concat_path();
 void check_dir();
 
 int main(int argc, char* argv[]) {
-	char path[200];
+	int i;
+    char* token;
+    char path[200];
 	getcwd(path, 200);
+    
+    printf("Permission\t\tFilename\n");
+    printf("----------\t\t--------\n");
 
-    if(argv[1]){
-        check_dir(argv[1]);
-    } else {
+    if(argc == 1){
         check_dir(path);
-    }
+    } else if(argc == 2){
+        token = strtok(argv[1], ":");
+        
+        while(token != NULL){
+            check_dir(token);
+            token = strtok(NULL, ":");
+        };
+    } else {
+        for(i = 1; i < argc; i++){
+            check_dir(argv[i]);  
+        };
+    };
     
     return 0;
 };
@@ -44,9 +58,6 @@ void check_dir(char* dir_path){
         printf("%s\n", strerror(errno));
     } else {
         dir_content = readdir(dir);
-        
-        printf("Permission\t\tFilename\n");
-        printf("----------\t\t--------\n");
 
         while(dir_content != NULL) {
             char file_path[200];
