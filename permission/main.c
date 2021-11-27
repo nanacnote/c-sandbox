@@ -52,7 +52,13 @@ void check_dir(char* dir_path){
             char file_path[200];
             concat_path(dir_path, dir_content->d_name, file_path);
             stat(file_path, &dir_stat);
-            printf("%lu\t\t\t%s\n", dir_stat.st_ino, dir_content->d_name);
+            
+            if(S_ISDIR(dir_stat.st_mode) == 0){
+                printf((dir_stat.st_mode & S_IRUSR) ? "r" : "-");
+                printf((dir_stat.st_mode & S_IWUSR) ? "w" : "-");
+                printf((dir_stat.st_mode & S_IXUSR) ? "x" : "-");
+                printf("\t\t\t%s\n", dir_content->d_name);
+            };
         
             dir_content = readdir(dir);
         };
